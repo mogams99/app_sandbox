@@ -18,68 +18,42 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white, // Warna teks pada AppBar
         ),
       ),
-      home: Scaffold(
+      home: const FirstScreen(),
+    );
+  }
+}
+
+class FirstScreen extends StatelessWidget {
+  const FirstScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
         appBar: AppBar(
-          title: Text('App Sandbox'),
-          // backgroundColor: Colors.blue, // Optional jika sudah di tema
-        ),
-        body: Center(
-          child: BiggerText(text: 'Lorem Ipsum'),
-        ),
-      ),
-    );
-  }
-}
-
-class Heading extends StatelessWidget {
-  final String text;
-
-  const Heading({Key? key, required this.text}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-      ),
-    );
-  }
-}
-
-class BiggerText extends StatefulWidget {
-  final String text;
-
-  const BiggerText({Key? key, required this.text}) : super(key: key);
-
-  @override
-  _BiggerTextState createState() => _BiggerTextState();
-}
-
-class _BiggerTextState extends State<BiggerText> {
-  double _fontSize = 24;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          widget.text,
-          style: TextStyle(
-            fontSize: _fontSize,
-            fontWeight: FontWeight.bold,
+          title: const Text('App Sandbox'),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+              onPressed: () => {},
+            )
+          ],
+          leading: IconButton(
+            icon: const Icon(
+              Icons.menu,
+              color: Colors.white,
+            ),
+            onPressed: () {},
           ),
         ),
-        ElevatedButton(
-          onPressed: () {
-            setState(() {
-              _fontSize += 2;
-            });
-          },
-          child: const Text('Perbesar'),
+        body: const Center(
+          child: Text('App SandBox'),
         ),
-      ],
-    );
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {},
+        ));
   }
 }
