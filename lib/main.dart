@@ -31,46 +31,28 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  String? _name;
+  bool lightOn = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('First Screen'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              decoration: const InputDecoration(
-                hintText: 'Enter your name',
-                labelText: 'Your Name',
-              ),
-              onChanged: (String? value) {
-                setState(() {
-                  _name = value;
-                });
-              },
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              child: const Text('Submit'),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        content: Text('Hello $_name, welcome to App Sandbox!',
-                            style: const TextStyle(fontSize: 20)),
-                      );
-                    });
-              },
-            )
-          ],
+        appBar: AppBar(
+          title: const Text('First Screen'),
         ),
-      ),
-    );
+        body: Switch(
+          value: lightOn,
+          onChanged: (bool value) {
+            setState(() {
+              lightOn = value;
+            });
+
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Light is ${lightOn ? 'on' : 'off'}'),
+                duration: Duration(seconds: 2),
+              ),
+            );
+          },
+        ));
   }
 }
