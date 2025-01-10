@@ -31,7 +31,7 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  String? selectedValue;
+  String? _name;
 
   @override
   Widget build(BuildContext context) {
@@ -39,28 +39,37 @@ class _FirstScreenState extends State<FirstScreen> {
       appBar: AppBar(
         title: const Text('First Screen'),
       ),
-      body: DropdownButton<String>(
-        items: const <DropdownMenuItem<String>>[
-          DropdownMenuItem<String>(
-            value: 'One',
-            child: Text('One'),
-          ),
-          DropdownMenuItem<String>(
-            value: 'Two',
-            child: Text('Two'),
-          ),
-          DropdownMenuItem<String>(
-            value: 'Three',
-            child: Text('Three'),
-          ),
-        ],
-        value: selectedValue,
-        hint: const Text('Select Value'),
-        onChanged: (String? value) {
-          setState(() {
-            selectedValue = value;
-          });
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              decoration: const InputDecoration(
+                hintText: 'Enter your name',
+                labelText: 'Your Name',
+              ),
+              onChanged: (String? value) {
+                setState(() {
+                  _name = value;
+                });
+              },
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              child: const Text('Submit'),
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Text('Hello $_name, welcome to App Sandbox!',
+                            style: const TextStyle(fontSize: 20)),
+                      );
+                    });
+              },
+            )
+          ],
+        ),
       ),
     );
   }
