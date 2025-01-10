@@ -38,8 +38,8 @@ class _FirstScreenState extends State<FirstScreen> {
           title: const Text('First Screen'),
         ),
         body: Center(
-          child: Image.asset(
-            'images/android.png',
+          child: Image.network(
+            'https://picsum.photos/200/300',
             width: 200,
             height: 200,
           ),
