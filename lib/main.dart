@@ -31,7 +31,7 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  bool lightOn = false;
+  String? selectedValue;
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +39,57 @@ class _FirstScreenState extends State<FirstScreen> {
         appBar: AppBar(
           title: const Text('First Screen'),
         ),
-        body: Switch(
-          value: lightOn,
-          onChanged: (bool value) {
-            setState(() {
-              lightOn = value;
-            });
-
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Light is ${lightOn ? 'on' : 'off'}'),
-                duration: Duration(seconds: 2),
+        body: Column(
+          children: <Widget>[
+            ListTile(
+              leading: Radio(
+                value: 'One',
+                groupValue: selectedValue,
+                onChanged: (String? value) {
+                  setState(() {
+                    selectedValue = value;
+                    showSnackBar();
+                  });
+                },
               ),
-            );
-          },
+              title: const Text('One'),
+            ),
+            ListTile(
+              leading: Radio(
+                value: 'Two',
+                groupValue: selectedValue,
+                onChanged: (String? value) {
+                  setState(() {
+                    selectedValue = value;
+                    showSnackBar();
+                  });
+                },
+              ),
+              title: const Text('Two'),
+            ),
+            ListTile(
+              leading: Radio(
+                value: 'Three',
+                groupValue: selectedValue,
+                onChanged: (String? value) {
+                  setState(() {
+                    selectedValue = value;
+                    showSnackBar();
+                  });
+                },
+              ),
+              title: const Text('Three'),
+            ),
+          ],
         ));
+  }
+
+  void showSnackBar() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('$selectedValue is selected'),
+        duration: const Duration(seconds: 1),
+      ),
+    );
   }
 }
