@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'App Sandbox',
       theme: ThemeData(
-        fontFamily: 'Oswald',
         primarySwatch: Colors.blue,
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.deepPurple, // Warna background AppBar
@@ -39,11 +38,10 @@ class _FirstScreenState extends State<FirstScreen> {
           title: const Text('First Screen'),
         ),
         body: Center(
-          child: Text(
-            'Custom Font Oswald',
-            style: TextStyle(
-              fontSize: 40,
-            ),
+          child: Image.asset(
+            'images/android.png',
+            width: 200,
+            height: 200,
           ),
         ));
   }
