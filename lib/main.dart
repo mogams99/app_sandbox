@@ -23,157 +23,44 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class FirstScreen extends StatelessWidget {
+class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
+
+  @override
+  State<FirstScreen> createState() => _FirstScreenState();
+}
+
+class _FirstScreenState extends State<FirstScreen> {
+  String? selectedValue;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('App Sandbox'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-            onPressed: () => {},
-          )
-        ],
-        leading: IconButton(
-          icon: const Icon(
-            Icons.menu,
-            color: Colors.white,
-          ),
-          onPressed: () {},
-        ),
+        title: const Text('First Screen'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              'mainAxisAlignment: spaceEvenly',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
+      body: DropdownButton<String>(
+        items: const <DropdownMenuItem<String>>[
+          DropdownMenuItem<String>(
+            value: 'One',
+            child: Text('One'),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              const Icon(Icons.share),
-              const Icon(Icons.thumb_up),
-              const Icon(Icons.thumb_down),
-            ],
+          DropdownMenuItem<String>(
+            value: 'Two',
+            child: Text('Two'),
           ),
-          const SizedBox(height: 20), // Jarak antar elemen
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              'mainAxisAlignment: spaceAround',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              const Icon(Icons.share),
-              const Icon(Icons.thumb_up),
-              const Icon(Icons.thumb_down),
-            ],
-          ),
-          const SizedBox(height: 20), // Jarak antar elemen
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              'mainAxisAlignment: spaceBetween',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const Icon(Icons.share),
-              const Icon(Icons.thumb_up),
-              const Icon(Icons.thumb_down),
-            ],
-          ),
-          const SizedBox(height: 20), // Jarak antar elemen
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              'mainAxisAlignment: start',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              const Icon(Icons.share),
-              const SizedBox(width: 20),
-              const Icon(Icons.thumb_up),
-              const SizedBox(width: 20),
-              const Icon(Icons.thumb_down),
-            ],
-          ),
-          const SizedBox(height: 20), // Jarak antar elemen
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              'mainAxisAlignment: center',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Icon(Icons.share),
-              const SizedBox(width: 20),
-              const Icon(Icons.thumb_up),
-              const SizedBox(width: 20),
-              const Icon(Icons.thumb_down),
-            ],
-          ),
-          const SizedBox(height: 20), // Jarak antar elemen
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              'mainAxisAlignment: end',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              const Icon(Icons.share),
-              const SizedBox(width: 20),
-              const Icon(Icons.thumb_up),
-              const SizedBox(width: 20),
-              const Icon(Icons.thumb_down),
-            ],
-          ),
-          const SizedBox(height: 20), // Jarak antar elemen
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              'Widget Column',
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Column(
-            children: <Widget>[
-              const Text(
-                'Title 1',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              const Text('Lorem ipsum dolor sit amet'),
-            ],
+          DropdownMenuItem<String>(
+            value: 'Three',
+            child: Text('Three'),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {},
+        value: selectedValue,
+        hint: const Text('Select Value'),
+        onChanged: (String? value) {
+          setState(() {
+            selectedValue = value;
+          });
+        },
       ),
     );
   }
