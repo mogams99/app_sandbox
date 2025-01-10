@@ -31,33 +31,18 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  bool agree = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('First Screen'),
         ),
-        body: ListTile(
-            leading: Checkbox(
-              value: agree,
-              onChanged: (bool? value) {
-                setState(() {
-                  agree = value!;
-                  showSnackBar();
-                });
-              },
-            ),
-            title: const Text('Agree')));
-  }
-
-  void showSnackBar() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Agree is ${agree ? 'checked' : 'unchecked'}'),
-        duration: const Duration(seconds: 2),
-      ),
-    );
+        body: Center(
+          child: Image.network(
+            'https://picsum.photos/200/300',
+            width: 200,
+            height: 200,
+          ),
+        ));
   }
 }
