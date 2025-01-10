@@ -31,7 +31,7 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  String? selectedValue;
+  bool agree = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,56 +39,24 @@ class _FirstScreenState extends State<FirstScreen> {
         appBar: AppBar(
           title: const Text('First Screen'),
         ),
-        body: Column(
-          children: <Widget>[
-            ListTile(
-              leading: Radio(
-                value: 'One',
-                groupValue: selectedValue,
-                onChanged: (String? value) {
-                  setState(() {
-                    selectedValue = value;
-                    showSnackBar();
-                  });
-                },
-              ),
-              title: const Text('One'),
+        body: ListTile(
+            leading: Checkbox(
+              value: agree,
+              onChanged: (bool? value) {
+                setState(() {
+                  agree = value!;
+                  showSnackBar();
+                });
+              },
             ),
-            ListTile(
-              leading: Radio(
-                value: 'Two',
-                groupValue: selectedValue,
-                onChanged: (String? value) {
-                  setState(() {
-                    selectedValue = value;
-                    showSnackBar();
-                  });
-                },
-              ),
-              title: const Text('Two'),
-            ),
-            ListTile(
-              leading: Radio(
-                value: 'Three',
-                groupValue: selectedValue,
-                onChanged: (String? value) {
-                  setState(() {
-                    selectedValue = value;
-                    showSnackBar();
-                  });
-                },
-              ),
-              title: const Text('Three'),
-            ),
-          ],
-        ));
+            title: const Text('Agree')));
   }
 
   void showSnackBar() {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('$selectedValue is selected'),
-        duration: const Duration(seconds: 1),
+        content: Text('Agree is ${agree ? 'checked' : 'unchecked'}'),
+        duration: const Duration(seconds: 2),
       ),
     );
   }
