@@ -38,69 +38,35 @@ class _FirstScreenState extends State<FirstScreen> {
         appBar: AppBar(
           title: const Text('First Screen'),
         ),
-        body: ListView(
-          children: <Widget>[
-            Container(
-              height: 250,
-              decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  border: Border.all(color: Colors.black)),
-              child: const Center(
-                child: Text(
-                  '1',
-                  style: TextStyle(fontSize: 60),
-                ),
+        body: ScrollingScreen());
+  }
+}
+
+class ScrollingScreen extends StatelessWidget {
+  const ScrollingScreen({super.key});
+
+  final List<int> numberList = const <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(
+        children: numberList.map((number) {
+          return Container(
+            height: 100,
+            decoration: BoxDecoration(
+              color: Colors.amber,
+              border: Border.all(color: Colors.white),
+            ),
+            child: Center(
+              child: Text(
+                '$number',
+                style: const TextStyle(fontSize: 45),
               ),
             ),
-            Container(
-              height: 250,
-              decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  border: Border.all(color: Colors.black)),
-              child: const Center(
-                child: Text(
-                  '2',
-                  style: TextStyle(fontSize: 60),
-                ),
-              ),
-            ),
-            Container(
-              height: 250,
-              decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  border: Border.all(color: Colors.black)),
-              child: const Center(
-                child: Text(
-                  '3',
-                  style: TextStyle(fontSize: 60),
-                ),
-              ),
-            ),
-            Container(
-              height: 250,
-              decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  border: Border.all(color: Colors.black)),
-              child: const Center(
-                child: Text(
-                  '4',
-                  style: TextStyle(fontSize: 60),
-                ),
-              ),
-            ),
-            Container(
-              height: 250,
-              decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  border: Border.all(color: Colors.black)),
-              child: const Center(
-                child: Text(
-                  '5',
-                  style: TextStyle(fontSize: 60),
-                ),
-              ),
-            ),
-          ],
-        ));
+          );
+        }).toList(),
+      ),
+    );
   }
 }
