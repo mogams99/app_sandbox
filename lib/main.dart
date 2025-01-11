@@ -32,96 +32,55 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('First Screen'),
-        ),
-        body: ExpandedFlexibleRange());
-  }
-}
-
-class ExpandedFlexibleRange extends StatelessWidget {
-  const ExpandedFlexibleRange({super.key});
+  final String message = 'Hello, i am from first screen.';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: Column(
-      children: [
-        Row(
-          children: const [
-            ExpandedWidget(),
-            FlexibleWidget(),
-          ],
-        ),
-        Row(
-          children: const [
-            ExpandedWidget(),
-            ExpandedWidget(),
-          ],
-        ),
-        Row(
-          children: const [
-            FlexibleWidget(),
-            FlexibleWidget(),
-          ],
-        ),
-        Row(
-          children: const [
-            FlexibleWidget(),
-            ExpandedWidget(),
-          ],
-        ),
-      ],
-    )));
+      appBar: AppBar(
+        title: const Text('First Screen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+            child: const Text('Change Screen'),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => SecondScreen(message)));
+            }),
+      ),
+    );
   }
 }
 
-class ExpandedWidget extends StatelessWidget {
-  const ExpandedWidget({super.key});
+class SecondScreen extends StatefulWidget {
+  final String message;
+
+  const SecondScreen(this.message, {super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Expanded(
-        child: Container(
-      decoration: BoxDecoration(
-        color: Colors.cyan,
-        border: Border.all(color: Colors.amber),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Text(
-          'Expanded',
-          style: TextStyle(color: Colors.white, fontSize: 24),
-        ),
-      ),
-    ));
-  }
+  State<SecondScreen> createState() => _SecondScreenState();
 }
 
-class FlexibleWidget extends StatelessWidget {
-  const FlexibleWidget({super.key});
-
+class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-        child: Container(
-      decoration: BoxDecoration(
-        color: Colors.blueAccent,
-        border: Border.all(color: Colors.black),
-      ),
-      child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            'Flexible',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-            ),
-          )),
-    ));
+    return Scaffold(
+        appBar: AppBar(title: const Text('Second Screen')),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(widget.message),
+              OutlinedButton(
+                child: const Text('Back'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ));
   }
 }
