@@ -38,39 +38,59 @@ class _FirstScreenState extends State<FirstScreen> {
         appBar: AppBar(
           title: const Text('First Screen'),
         ),
-        body: ScrollingScreen());
+        body: Rainbow());
   }
 }
 
-class ScrollingScreen extends StatelessWidget {
-  const ScrollingScreen({super.key});
-
-  final List<int> numberList = const <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+class Rainbow extends StatelessWidget {
+  const Rainbow({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.separated(
-        itemCount: numberList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            height: 500,
-            decoration: BoxDecoration(
-              color: Colors.greenAccent,
-              border: Border.all(color: Colors.black),
-            ),
-            child: Center(
-              child: Text(
-                '${numberList[index]}',
-                style: const TextStyle(fontSize: 65),
-              ),
-            ),
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return const Divider();
-        },
-      ),
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            color: Colors.blue,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.amberAccent,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.indigo,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.blueGrey,
+          ),
+        ),
+        Expanded(
+          flex: 2,
+          child: Container(
+            color: Colors.black,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.redAccent,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.yellow,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.teal,
+          ),
+        ),
+      ],
     );
   }
 }
