@@ -38,59 +38,90 @@ class _FirstScreenState extends State<FirstScreen> {
         appBar: AppBar(
           title: const Text('First Screen'),
         ),
-        body: Rainbow());
+        body: ExpandedFlexibleRange());
   }
 }
 
-class Rainbow extends StatelessWidget {
-  const Rainbow({super.key});
+class ExpandedFlexibleRange extends StatelessWidget {
+  const ExpandedFlexibleRange({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: Container(
-            color: Colors.blue,
-          ),
+    return Scaffold(
+        body: SafeArea(
+            child: Column(
+      children: [
+        Row(
+          children: const [
+            ExpandedWidget(),
+            FlexibleWidget(),
+          ],
         ),
-        Expanded(
-          child: Container(
-            color: Colors.amberAccent,
-          ),
+        Row(
+          children: const [
+            ExpandedWidget(),
+            ExpandedWidget(),
+          ],
         ),
-        Expanded(
-          child: Container(
-            color: Colors.indigo,
-          ),
+        Row(
+          children: const [
+            FlexibleWidget(),
+            FlexibleWidget(),
+          ],
         ),
-        Expanded(
-          child: Container(
-            color: Colors.blueGrey,
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Container(
-            color: Colors.black,
-          ),
-        ),
-        Expanded(
-          child: Container(
-            color: Colors.redAccent,
-          ),
-        ),
-        Expanded(
-          child: Container(
-            color: Colors.yellow,
-          ),
-        ),
-        Expanded(
-          child: Container(
-            color: Colors.teal,
-          ),
+        Row(
+          children: const [
+            FlexibleWidget(),
+            ExpandedWidget(),
+          ],
         ),
       ],
-    );
+    )));
+  }
+}
+
+class ExpandedWidget extends StatelessWidget {
+  const ExpandedWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+        child: Container(
+      decoration: BoxDecoration(
+        color: Colors.cyan,
+        border: Border.all(color: Colors.amber),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Text(
+          'Expanded',
+          style: TextStyle(color: Colors.white, fontSize: 24),
+        ),
+      ),
+    ));
+  }
+}
+
+class FlexibleWidget extends StatelessWidget {
+  const FlexibleWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+        child: Container(
+      decoration: BoxDecoration(
+        color: Colors.blueAccent,
+        border: Border.all(color: Colors.black),
+      ),
+      child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Text(
+            'Flexible',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+            ),
+          )),
+    ));
   }
 }
