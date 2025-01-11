@@ -38,13 +38,69 @@ class _FirstScreenState extends State<FirstScreen> {
         appBar: AppBar(
           title: const Text('First Screen'),
         ),
-        body: Center(
-          child: Text(
-            'Custom Font Oswald',
-            style: TextStyle(
-              fontSize: 40,
+        body: ListView(
+          children: <Widget>[
+            Container(
+              height: 250,
+              decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  border: Border.all(color: Colors.black)),
+              child: const Center(
+                child: Text(
+                  '1',
+                  style: TextStyle(fontSize: 60),
+                ),
+              ),
             ),
-          ),
+            Container(
+              height: 250,
+              decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  border: Border.all(color: Colors.black)),
+              child: const Center(
+                child: Text(
+                  '2',
+                  style: TextStyle(fontSize: 60),
+                ),
+              ),
+            ),
+            Container(
+              height: 250,
+              decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  border: Border.all(color: Colors.black)),
+              child: const Center(
+                child: Text(
+                  '3',
+                  style: TextStyle(fontSize: 60),
+                ),
+              ),
+            ),
+            Container(
+              height: 250,
+              decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  border: Border.all(color: Colors.black)),
+              child: const Center(
+                child: Text(
+                  '4',
+                  style: TextStyle(fontSize: 60),
+                ),
+              ),
+            ),
+            Container(
+              height: 250,
+              decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  border: Border.all(color: Colors.black)),
+              child: const Center(
+                child: Text(
+                  '5',
+                  style: TextStyle(fontSize: 60),
+                ),
+              ),
+            ),
+          ],
         ));
   }
 }
